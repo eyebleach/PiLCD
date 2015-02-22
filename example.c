@@ -15,8 +15,8 @@ int main(int argc, char **argv) {
     char *str = "Hello world!";
     char *str2 = "Goodbye..";
 
-    lcd_print_str(display, str,1);
-    lcd_print_str(display, str2, 2);
+    lcd_print_str(display, str,2);
+    lcd_print_str(display, str2, 1);
 
     return 0;
 }

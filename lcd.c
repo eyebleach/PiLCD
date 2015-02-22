@@ -82,9 +82,9 @@ void enableLatch(int i2c) {
     unsigned char r = 0;
 
     i2c_read(i2c,&r);
-    i2c_write(i2c,(r | 0x04),0,1);
+    i2c_write(i2c,(r | 0x04) | 0x08,0,1);
     i2c_read(i2c,&r),
-    i2c_write(i2c,(r & 0xFB),0,1);
+    i2c_write(i2c,(r & 0xFB) | 0x08,0,1);
 }
 
 /*Runs command to lcd
@@ -92,9 +92,9 @@ i2c: device number
 cmd: command
 */
 void lcd_cmd(int i2c, unsigned char cmd) {
-    i2c_write(i2c,( (cmd>>4)<<4 ),0,1);
+    i2c_write(i2c,( (cmd>>4)<<4 ) | 0x08,0,1);
     enableLatch(i2c);
-    i2c_write(i2c,( (cmd & 0x0F)<<4 ),0,1);
+    i2c_write(i2c,( (cmd & 0x0F)<<4 ) | 0x08,0,1);
     enableLatch(i2c);
     i2c_write(i2c,0x0 | 0x08,0,1); //0x08 for backlight!
 }
@@ -104,9 +104,9 @@ i2c: device number
 chr: character
 */
 void lcd_write_char(int i2c, unsigned char chr) {
-    i2c_write(i2c,(0x01 | (chr>>4)<<4),0,1);
+    i2c_write(i2c,(0x01 | (chr>>4)<<4) | 0x08,0,1);
     enableLatch(i2c);
-    i2c_write(i2c,(0x01 | (chr & 0x0F)<<4),0,1);
+    i2c_write(i2c,(0x01 | (chr & 0x0F)<<4) | 0x08,0,1);
     enableLatch(i2c);
     i2c_write(i2c,0x0 | 0x08,0,1);
 }
