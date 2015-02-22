@@ -1,5 +1,5 @@
 # PiLCD
-A library for controlling a lcd with a Raspberry Pi, using a [lcm1602 backpack](http://arduino-info.wikispace$
+A library for controlling a lcd with a Raspberry Pi, using a [lcm1602 backpack](http://arduino-info.wikispaces.com/LCD-Blue-I2C)
 
 * Print text to display
 * Add custom characters
@@ -51,6 +51,7 @@ Example, 3 custom characters (forms a bottle):
     char beer[] = { 0, 1, 2 };
     lcd_print_str(display, beer, 1, 3); //row 1, 3 characters
 
+[Automatic way to make custom characters](http://www.quinapalus.com/hd44780udg.html)
 
 
 ### Thanks to
