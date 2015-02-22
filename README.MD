@@ -36,7 +36,8 @@ To add custom characters, use the `lcd_add_char()`-function and supply a charact
 
 You need to supply all characters each time, so you can't add characters by running the function multiple times.
 
-To print your custom characters, you simply print the number of your characters, starting on 0. C function `strlen` uses 0x00 (first custom character) as a null terminator/end of string, so in order to use `strlen` you have to start your custom characters at position 1, preferebly by adding a blank (8 * 0x00) character.
+To print your custom characters, you simply print the number of your characters, starting on 0.  
+Note: C function `strlen` uses 0x00 (first custom character) as a null terminator/end of string, so in order to use `strlen` you have to start your custom characters at position 1, preferebly by adding a blank (8 * 0x00) character.
 
 
 
