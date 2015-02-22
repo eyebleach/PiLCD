@@ -20,6 +20,7 @@ lcd_print_str(dev_num, str, 1); (for row 1)
 
 int lcd_dev_init(int i2c_num, int i2c_addr);
 void lcd_init(int i2c);
-int lcd_print_str(int i2c, const char *str, int row);
+int lcd_print_str(int i2c, const char *str, int row, int chars);
+void lcd_add_char(int i2c, unsigned char chr[], int lines);
 
 #endif

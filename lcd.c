@@ -75,6 +75,10 @@ int i2c_read(int device, unsigned char *value) {
     return 0;
 }
 
+void i2c_close(int device) {
+    close(device);
+}
+
 /* Keeps enable-pin on
 i2c: device number
 */

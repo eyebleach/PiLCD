@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <string.h>
 #include "pilcd.h"
 
 int main(int argc, char **argv) {
@@ -11,12 +12,18 @@ int main(int argc, char **argv) {
     }
 
     lcd_init(display);
+    unsigned char bottle[] = { 0x0,0x1,0x2,0x2,0x2,0x2,0x2,0x1,
+                               0x0,0x1f,0x0,0x0,0x0,0x0,0x0,0x1f,
+                               0x0,0x10,0x8,0x7,0x1,0x7,0x8,0x10 };
 
-    char *str = "Hello world!";
-    char *str2 = "Goodbye..";
+    lcd_add_char(display,bottle,24);
 
-    lcd_print_str(display, str,2);
-    lcd_print_str(display, str2, 1);
+    char *str = "Beer!";
+    char beer[] = {0, 1, 2 };
 
+    lcd_print_str(display, str, 1, 5);
+    lcd_print_str(display, beer, 2, 3);
+
+    lcd_close(display);
     return 0;
 }

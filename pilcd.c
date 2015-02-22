@@ -55,10 +55,11 @@ Print text to lcd
 i2c: device number
 str: c-string
 row: row
+chars: number of chars
 
 returns -1 on error
 */
-int lcd_print_str(int i2c, const char *str, int row) {
+int lcd_print_str(int i2c, const char *str, int row, int chars) {
     switch(row) {
         case 1:
             lcd_cmd(i2c,0x80);
@@ -71,11 +72,30 @@ int lcd_print_str(int i2c, const char *str, int row) {
     }
 
     int i;
-    for(i = 0; i < strlen(str);i++) {
+    for(i = 0; i < chars;i++) {
         lcd_write_char(i2c,str[i]);
     }
 
     lcd_cmd(i2c,0xC);
 
     return 0;
+}
+
+/*
+Add custom character to display (volatile)
+i2c: device number
+chr[]: array of custom char, see google
+lines: lines, 8 for 1 char, 16 for 2 chars etc
+*/
+void lcd_add_char(int i2c, unsigned char chr[], int lines) {
+    int i = 0;
+    lcd_cmd(i2c, 0x40);
+
+    for(i = 0; i < lines;i++) {
+        lcd_write_char(i2c,chr[i]);
+    }
+}
+
+void lcd_close(int i2c) {
+   i2c_close(i2c);
 }
